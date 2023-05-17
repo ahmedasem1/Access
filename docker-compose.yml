@@ -17,7 +17,7 @@ services:
              python manage.py runserver 0.0.0.0:8000"
     environment:
       - DB_HOST=db
-      - DB_NAME=access
+      - DB_NAME=postgres
       - DB_USER=postgres
       - DB_PASS=0000
       - DB_PORT=5432
