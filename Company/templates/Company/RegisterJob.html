@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+{% csrf_token %}
+{% load static %}
+
+
+<head>
+    <title>Signup Page</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    
+</head>
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <form action={% url 'signupemp' %} method="POST">
+        {% csrf_token %}
+        
+    <div class="fieldWrapper">
+        
+        <label for="title">title</label> <input type="text" name="title"id="title" maxlength="100" required id="title">
+        
+    </div>
+
+    
+
+
+    <div class="fieldWrapper">
+        
+        <label for="description">description:</label> <input type="text" name="description"id="description" maxlength="500" required id="description">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="type">job type</label> <input type="text" name="type" maxlength="100" required id="type">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="salary">salary</label> <input type="number" name="salary" maxlength="50" required id="salary">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="hours">hours:</label> <input type="number" name="hours" maxlength="50" required id="hours">
+        
+    </div>
+
+    
+
+    
+
+    <div class="fieldWrapper">
+        
+        <label for="Feild">Feild:</label> <input type="text" name="feild" maxlength="200" required id="feild">
+        
+    </div>
+
+    
+
+    <div class="fieldWrapper">
+        
+        <label for="id_Main_skill">Main skill:</label> <select class="form-control" id="skills" name='skills'multiple>
+            {% for skill in main %}
+                <option value='{{skill.id}}'>{{ skill.name }}</option>
+            {% endfor %}
+        </select>
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_Pluses">Pluses:</label> <select name="pluse" required id="pluse" multiple>
+            {% for pluse in plus %}
+            <option value='{{pluse.id}}'>{{ pluse.name }}</option>
+        {% endfor %}
+
+</select> 
+        
+    </div>
+
+        <button type="submit">Send</button>
+</body>
+</html> 

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+{% csrf_token %}
+{% load static %}
+
+{% comment %} <input type="hidden" name="csrfmiddlewaretoken" value="NkkYyIoP9UHEX8my8VM3i9lxDEoAIzAO3FpfvNBWME79OjtKy9PzVdauePBN9awU"> {% endcomment %}
+
+<head>
+  <!-- Design by foolishdeveloper.com -->
+    <title>Signup Page</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    
+</head>
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <form action={% url 'signupemp' %} method="POST">
+        {% comment %} <input type="hidden" name="csrfmiddlewaretoken" value="NkkYyIoP9UHEX8my8VM3i9lxDEoAIzAO3FpfvNBWME79OjtKy9PzVdauePBN9awU"> {% endcomment %}
+        {% csrf_token %}
+        
+    <div class="fieldWrapper">
+        
+        <label for="id_first_name">First name:</label> <input type="text" name="first_name"id="first_name" maxlength="100" required id="id_first_name">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_last_name">Last name:</label> <input type="text" name="last_name" maxlength="100" required id="last_name">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_image">Image:</label> <input type="file" name="image" accept="image/*" required id="image">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_street">Street:</label> <input type="text" name="street"id="street" maxlength="80" required id="street">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_postal_code">Postal code:</label> <input type="text" name="postal_code" maxlength="5" required id="postal_code">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_city">City:</label> <input type="text" name="city" maxlength="50" required id="city">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_description">Description:</label> <input type="text" name="description" maxlength="500" required id="description">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_Dob">Dob:</label> <input type="date" name="Dob" required id="Dob">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_contanct_number">Contanct number:</label> <input type="text" name="contanct_number" maxlength="100" required id="contanct_number">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_feild">Feild:</label> <input type="text" name="feild" maxlength="200" required id="feild">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_slug">Slug:</label> <input type="text" name="slug" maxlength="50" id="slug">
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_Main_skill">Main skill:</label> <select class="form-control" id="skills" name='skills'multiple>
+            {% for skill in main %}
+                <option value='{{skill.id}}'>{{ skill.name }}</option>
+            {% endfor %}
+        </select>
+        
+    </div>
+
+    <div class="fieldWrapper">
+        
+        <label for="id_Pluses">Pluses:</label> <select name="pluse" required id="pluse" multiple>
+            {% for pluse in plus %}
+            <option value='{{pluse.id}}'>{{ pluse.name }}</option>
+        {% endfor %}
+
+</select>
+        
+    </div>
+
+        <button type="submit">Send</button>
+</body>
+</html>

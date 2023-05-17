@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    Company
+  </title>
+  <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <h1 class="css-7s7ce6">{{ company.name }}</h1>
+    <img src="{{ company.image.url }}" alt="Lights" style="width:40%">
+
+    <p>{{ company.description }}</p>
+    <p>{{ company.rating }}</p>
+    <br>
+    {% for w in company.job_set.all %}
+  <tr>
+    <td>{{ w.title }}</td>
+  </tr>
+  {% endfor %}
+</body>
+</html>
