@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path("employee/<int:pk>/", views.SingleEmpView.as_view(), name="employee"),
-    path("jobs", views.JobsListView.as_view(), name="jobs"),
+    path("jobs", views.Alljobsview, name="jobs"),
     path("signupemp", views.SignUpEmpView, name="signupemp"),
 ]

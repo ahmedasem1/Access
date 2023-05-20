@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    Employee
+  </title>
+  <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <h1>{{ employee.first_name }}</h1>
+    <img src="{{ employee.image.url }}" alt="Lights" style="width:40%">
+
+    <p>{{ employee.first_name }}</p>
+    <p>{{ employee.description }}</p>
+    {% for w in employee.Main_skill.all %}
+  <tr>
+    <td>{{ w }}</td>
+  </tr>
+  {% endfor %}
+  <br>
+
+  {% for w in employee.experience_set.all %}
+  <tr>
+    <td>{{ w.title }}</td>
+  </tr>
+  <p>
+    <p>
+  {% endfor %}
+</body>
+</html>

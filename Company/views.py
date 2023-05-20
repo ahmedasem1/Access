@@ -16,7 +16,7 @@ def SignUpComView(request):
         postal_code = request.POST.get("postal_code")
         city = request.POST.get("city")
 
-        image = request.POST.get("image")
+        image = request.FILES.get("image")
 
         description = request.POST.get("description")
         Dob = request.POST.get("Dob")
@@ -38,7 +38,7 @@ def SignUpComView(request):
             feild=feild,
             rating=rating,
             date=date,
-            author=request.user.username,
+            author=request.user.username
         )
         my_com.save()
 

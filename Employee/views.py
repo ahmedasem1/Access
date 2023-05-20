@@ -22,7 +22,7 @@ def SignUpEmpView(request):
         postal_code = request.POST.get("postal_code")
         city = request.POST.get("city")
 
-        image = request.POST.get("image")
+        image = request.FILES.get("image")
 
         description = request.POST.get("description")
         Dob = request.POST.get("Dob")
@@ -50,30 +50,34 @@ def SignUpEmpView(request):
         my_emp.Pluses.set(pluse)
 
         my_emp.save()
+        
 
-    return render(request, "Employee/SignUpEmp.html", fill_relations)
+    return render(request, "SignUpEmp.html", fill_relations)
 
 
 # display each employee profile
 
 
 class SingleEmpView(DetailView):
-    template_name = "Employee/SingleEmp.html"
+    template_name = "SingleEmp.html"
     model = Employee
 
 
 # displaying all jobs related to each employee
 
 
-class JobsListView(ListView):
-    template_name = "Employee/Jobs.html"
-    model = Job
-    context_object_name = "jobs"
+# class Alljobsview(request):
+#     employee = Employee.objects.filter(author=request.request.user.username).first()
+#     plus = Job.objects.all()
+    
+    
+#     return render(request, "SignUpEmp.html", fill_relations)
+def Alljobsview(request):
+    employee = Employee.objects.filter(author=request.user.username).first()
+    jobs = Job.objects.all()
+    fill_relations = {"employee": employee, "jobs": jobs}
 
-    def get_context_data(self, *args, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(JobsListView, self).get_context_data(**kwargs)
-        context = Employee.objects.filter(author=self.request.user.username).first()
-        context = {"context": context}
-        print(context)
-        return context
+    
+        
+
+    return render(request, "Jobs.html", fill_relations)

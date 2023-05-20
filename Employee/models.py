@@ -49,9 +49,7 @@ class Employee(models.Model):
     def get_absolute_url(self):
         return reverse("Employee", args=[self.slug])
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.first_name + " " + self.last_name)
-        super(Employee, self).save(*args, **kwargs)
+    
 
     def __str__(self):
         return f"{self.first_name} ({self.last_name})"

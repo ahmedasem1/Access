@@ -19,12 +19,12 @@
         <div class="shape"></div>
     </div>
     
-    <form action={% url 'signupemp' %} method="POST">
+    <form  method="POST">
         {% csrf_token %}
         
     <div class="fieldWrapper">
         
-        <label for="name">First name:</label> <input type="text" name="name"id="name" maxlength="100" required id="name">
+        <label for="name">Name:</label> <input type="text" name="name"id="name" maxlength="100" required id="name">
         
     </div>
 
@@ -77,13 +77,10 @@
         <label for="id_feild">Feild:</label> <input type="text" name="feild" maxlength="200" required id="feild">
         
     </div>
-
-    <div class="fieldWrapper">
-        
-        <label for="rating">rating:</label> <input type="number" name="rating" min="0"max="10"  id="rating">
-        
-    </div>
-
+    {% if form.errors %}
+        <p class="login-box-msg" style="color: red; font-weight: bold;">Passwords do not match!</p>
+    {% endif %}
+    
     {% comment %} <div class="fieldWrapper">
         
         <label for="id_Main_skill">Main skill:</label> <select class="form-control" id="skills" name='skills'multiple>

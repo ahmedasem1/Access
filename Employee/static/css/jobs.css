@@ -1,0 +1,53 @@
+body {
+    background-color: #eeeeee;
+    font-family: verdana;
+  }
+.img_nav{
+  border-radius: 50%;
+  margin-right:130px;
+
+
+}
+.nav-link{
+  border-left: 140px;
+}
+.form_control{
+    margin-right:30px;
+
+
+}  
+.css-1i76nwa {
+  background: white;
+  width: 100%;
+  border: 1px solid rgb(217, 221, 228);
+  border-radius: 2px;
+  padding: 12px 12px 0px;
+  margin-bottom: 12px;
+  margin-left: 12px;
+
+}
+.name{
+  color: rgb(255, 255, 255);
+  margin-right:5px;
+
+
+}
+.brand{
+  /* color: #3e63b9;  */
+  color: white;
+  margin-left: 150px;
+  text-decoration:none;
+  font-family: 'Franklin Gothic Medium', ;
+  font-size: larger;
+}
+.brand-child.brand{
+  /* color: #3e63b9;  */
+  color: white;
+  text-decoration:none;
+  font-family: 'Franklin Gothic Medium', ;
+  font-size: larger;
+}
+
+.h4{
+  margin-left: 50px;
+}
