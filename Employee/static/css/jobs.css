@@ -23,8 +23,8 @@ body {
   border-radius: 2px;
   padding: 12px 12px 0px;
   margin-bottom: 12px;
-  margin-left: 12px;
-
+  margin-left: 150px;
+  width:70%;
 }
 .name{
   color: rgb(255, 255, 255);
@@ -33,12 +33,15 @@ body {
 
 }
 .brand{
-  /* color: #3e63b9;  */
   color: white;
+
   margin-left: 150px;
   text-decoration:none;
   font-family: 'Franklin Gothic Medium', ;
   font-size: larger;
+}
+.brand:hover {
+  color: #0d6efd;
 }
 .brand-child.brand{
   /* color: #3e63b9;  */
@@ -49,5 +52,41 @@ body {
 }
 
 .h4{
-  margin-left: 50px;
+  margin-left: 181px;
+}
+.navbar navbar-expand-lg navbar-dark bg-dark{
+  background-color: black;
+  color: black;
+
+}
+.btn btn-outline-success{
+  color: blue;
+  background-color: blue;
+
+}
+.job_tag{
+  color: #0d6efd;
+  text-decoration:none;
+
+}
+.type{
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: normal;
+  font-style: italic;
+  text-decoration: none;
+  line-height: 14px;
+  display: inline-block;
+  padding: 1px 2px;
+  border: 0px;
+  color: rgb(89, 108, 138);
+  background-color: rgb(245, 246, 247);
+  margin-top: 10px;
+  margin-left: 6px;
+
+
 }
