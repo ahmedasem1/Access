@@ -29,6 +29,8 @@ body {
 .name{
   color: rgb(255, 255, 255);
   margin-right:5px;
+  margin-top: auto;
+  margin-bottom: auto;
 
 
 }
@@ -90,3 +92,4 @@ body {
 
 
 }
+/* .navbar navbar-expand-lg navbar-dark bg-dark */
