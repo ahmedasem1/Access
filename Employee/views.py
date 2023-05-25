@@ -73,5 +73,5 @@ def Alljobsview(request):
         jobs = Job.objects.all() 
         
     fill_relations = {"employee": employee, "jobs": jobs}
-    
+    print(employee.Main_skills.all())    
     return render(request, "Jobs.html", fill_relations)

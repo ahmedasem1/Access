@@ -55,25 +55,42 @@
           <div class="css-1i76nwa">
             <div style="display: flex;">
             <a class="job_tag"href="#">{{ job.title }}</a><div class="type"> {{job.type}}</div></div>
+          <div class="row">
+            <div class="col">
              {{ job.company.name }} <br>
-             <img src="{{ job.company.image.url}}" alt="Paris" width="40px" height="40px">
-        {% comment %} {% for skill in job.Main_skill%} {% endcomment %}
-        {% for skill in job.Main_skill.all%}
+             {{ job.description }} <br>
 
-        {% comment %} <p>{{skill.name}}</p> {% endcomment %}
-        {% for skill_emp in employee.Main_skill.all%}
-          {% if skill_emp == skill.name %}
-            <p>{{skill.name}}</p>
+
+        {% for skill in job.Main_skill.all%}
+            {% comment %} <p>{{skill.name}}</p> {% endcomment %}
+
+        
+          {% for skill_emp in employee.Main_skills.all%}
+            {% if skill_emp.name == skill.name %}
+              <button type="button" class="btn btn-success">{{skill.name}}</button>
+
             {% endif %}
-        {% endfor %}
+            {% comment %} x=x+1 {% endcomment %}
+          {% endfor %}
+
 
 
 
             
-        {% endfor %}
+        {% endfor %} 
+
       </div>
 
+      <div  class="col">
+      <img src="{{ job.company.image.url}}" alt="Paris" width="100px" height="100px" class="rounded float-end">
+    </div>
+
+    </div>
+
+    </div>
+
         {% endfor %}
+        
 
       </ul>
 </body>
