@@ -69,13 +69,8 @@ def Alljobsview(request):
     employee = Employee.objects.filter(author=request.user.username).first()
     if request.method == "POST":
         jobs=Job.objects.filter(title__contains=request.POST.get("form-control me-2"))
-    else:
-        jobs = Job.objects.all()
-    
-
-        
-    
-    
+    if request.method == "GET":
+        jobs = Job.objects.all() 
         
     fill_relations = {"employee": employee, "jobs": jobs}
     
