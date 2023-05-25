@@ -65,19 +65,18 @@ class SingleEmpView(DetailView):
 
 # displaying all jobs related to each employee
 
-
-# class Alljobsview(request):
-#     employee = Employee.objects.filter(author=request.request.user.username).first()
-#     plus = Job.objects.all()
-    
-    
-#     return render(request, "SignUpEmp.html", fill_relations)
 def Alljobsview(request):
     employee = Employee.objects.filter(author=request.user.username).first()
-    jobs = Job.objects.all()
-    fill_relations = {"employee": employee, "jobs": jobs}
+    if request.method == "POST":
+        jobs=Job.objects.filter(title__contains=request.POST.get("form-control me-2"))
+    else:
+        jobs = Job.objects.all()
+    
 
+        
+    
     
         
-
+    fill_relations = {"employee": employee, "jobs": jobs}
+    
     return render(request, "Jobs.html", fill_relations)
