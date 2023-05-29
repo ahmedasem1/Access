@@ -22,13 +22,13 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container-fluid">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+            <li class="brand">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="brand">
               <a class="nav-link" href="#">Features</a>
             </li>
-            <li class="nav-item">
+            <li class="brand">
               <a class="nav-link" href="#">Pricing</a>
             </li>
           </ul>
@@ -58,26 +58,17 @@
           <div class="row">
             <div class="col">
              {{ job.company.name }} <br>
-             {{ job.description }} <br>
+             {{ job.description }} <br><br>
 
 
         {% for skill in job.Main_skill.all%}
-            {% comment %} <p>{{skill.name}}</p> {% endcomment %}
-
-        
-          {% for skill_emp in employee.Main_skills.all%}
-            {% if skill_emp.name == skill.name %}
+            {% if skill in employee.Main_skills.all %}
               <button type="button" class="btn btn-success">{{skill.name}}</button>
-
+            {% else %}
+            <button type="button" class="btn btn-danger">{{skill.name}}</button>
             {% endif %}
-            {% comment %} x=x+1 {% endcomment %}
-          {% endfor %}
 
-
-
-
-            
-        {% endfor %} 
+          {% endfor %}  
 
       </div>
 

@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import Employee.urls
 
+
 def SignupPage(request):
     if request.method == "POST":
         uname = request.POST.get("username")

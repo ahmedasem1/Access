@@ -38,7 +38,7 @@ def SignUpComView(request):
             feild=feild,
             rating=rating,
             date=date,
-            author=request.user.username
+            author=request.user.username,
         )
         my_com.save()
 

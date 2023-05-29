@@ -14,4 +14,4 @@ class TestUrls(SimpleTestCase):
 
     def test_Joblist_is_resolved(self):
         url = reverse("jobs")
-        self.assertEquals(resolve(url).func.view_class, JobsListView)
+        self.assertEquals(resolve(url).func, Alljobsview)

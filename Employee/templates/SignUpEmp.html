@@ -3,11 +3,11 @@
 {% csrf_token %}
 {% load static %}
 
-{% comment %} <input type="hidden" name="csrfmiddlewaretoken" value="NkkYyIoP9UHEX8my8VM3i9lxDEoAIzAO3FpfvNBWME79OjtKy9PzVdauePBN9awU"> {% endcomment %}
 
 <head>
-  <!-- Design by foolishdeveloper.com -->
     <title>Signup Page</title>
+    {% comment %} <link rel="shortcut icon" type="image" href="C:\Users\DELL\OneDrive\Desktop\Access\Access\Employee\images\logo.jpg"/>  {% endcomment %}
+
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -17,7 +17,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/signemp.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Signemp.css' %}"/>
+
 
 </head>
 
@@ -26,73 +27,77 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
+
     
-    <form method="POST" enctype="multipart/form-data">
-        {% comment %} <input type="hidden" name="csrfmiddlewaretoken" value="NkkYyIoP9UHEX8my8VM3i9lxDEoAIzAO3FpfvNBWME79OjtKy9PzVdauePBN9awU"> {% endcomment %}
+    <form method="POST" enctype="multipart/form-data" class="row g-3">
         {% csrf_token %}
+        <h3>Sign Up Here</h3>
         
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">First name</label>
+            <input type="text" class="form-control" id="first_name"name="first_name">
+          </div>
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name"name="last_name">
+          </div>
+
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">Address</label>
+            <input type="text" class="form-control" id="street" placeholder="1234 Main St" name="street">
+          </div>
+          <div class="col-md-4">
+            <label for="inputState" class="form-label">city</label>
+            <input type="text" class="form-control" id="city"name="city">
+
+          </div>
+          <div class="col-md-2">
+            <label for="inputZip" class="form-label">Zip</label>
+            <input type="text" class="form-control" id="inputZip"name="postal_code">
+          </div>
+          
+          </div>
+          
+
+
     <div class="fieldWrapper">
         
-        <label for="id_first_name">First name:</label> <input type="text"  name="first_name"id="first_name" maxlength="100" required id="id_first_name">
+        <label for="id_description"class="form-label">Description:</label> <textarea class="form-control"  name="description" maxlength="500" required id="description" style="height: 100px"></textarea >
+        
+    </div>
+    <div class="fieldWrapper">
+        
+        <label for="id_image">Image:</label>   <input type="file" class="form-control" id="inputGroupFile01" name="image">
+
         
     </div>
 
-    <div class="fieldWrapper">
+    <div class="col-md-4">
         
-        <label for="id_last_name">Last name:</label> <input type="text" name="last_name" maxlength="100" required id="last_name">
-        
-    </div>
-
-    <div class="fieldWrapper">
-        
-        <label for="id_image">Image:</label> <input type="file" name="image"  required id="image">
+        <label for="id_Dob"class="form-label">Dob:</label> <input type="date" name="Dob"class="form-control" required id="Dob">
         
     </div>
 
-    <div class="fieldWrapper">
+    <div class="col-md-4">
         
-        <label for="id_street">Street:</label> <input type="text" name="street"id="street" maxlength="80" required id="street">
-        
-    </div>
-
-    <div class="fieldWrapper">
-        
-        <label for="id_postal_code">Postal code:</label> <input type="text" name="postal_code" maxlength="5" required id="postal_code">
+        <label for="id_contanct_number"class="form-label">Contanct number:</label> <input type="text"class="form-control" name="contanct_number" maxlength="100" required id="contanct_number"placeholder="01XXXXXXXXX">
         
     </div>
 
-    <div class="fieldWrapper">
+    <div class="col-md-4">
         
-        <label for="id_city">City:</label> <input type="text" name="city" maxlength="50" required id="city">
-        
-    </div>
-
-    <div class="fieldWrapper">
-        
-        <label for="id_description">Description:</label> <input type="text" name="description" maxlength="500" required id="description">
-        
-    </div>
-
-    <div class="fieldWrapper">
-        
-        <label for="id_Dob">Dob:</label> <input type="date" name="Dob" required id="Dob">
-        
-    </div>
-
-    <div class="fieldWrapper">
-        
-        <label for="id_contanct_number">Contanct number:</label> <input type="text" name="contanct_number" maxlength="100" required id="contanct_number">
-        
-    </div>
-
-    <div class="fieldWrapper">
-        
-        <label for="id_feild">Feild:</label> <input type="text" name="feild" maxlength="200" required id="feild">
-        
+        {% comment %} <label for="id_feild"class="form-label">Feild:</label> <input type="text" name="feild" maxlength="200" required id="feild"> {% endcomment %}
+        <label for="id_contanct_number"class="form-label">Feild:</label> 
+        <select class="form-select" aria-label="Default select example" name="feild">
+            <option selected> </option>
+            <option value="Software Engineering">Software Engineering</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
+            <option value="Markting">Markting</option>
+          </select>
     </div>
 
 
-    <div class="fieldWrapper">
+    <div class="col-md-6">
         
         <label for="id_Main_skill">Main skill:</label> <select class="form-control" id="skills" name='skills'multiple>
             {% for skill in main %}
@@ -102,7 +107,7 @@
         
     </div>
 
-    <div class="fieldWrapper">
+    <div class="col-md-6">
         
         <label for="id_Pluses">Pluses:</label> <select name="pluse" required id="pluse" multiple>
             {% for pluse in plus %}

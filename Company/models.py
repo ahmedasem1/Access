@@ -56,7 +56,7 @@ class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     Main_skill = models.ManyToManyField("Employee.Main_skill")
     Pluses = models.ManyToManyField("Employee.Pluses")
-    Employees = models.ManyToManyField("Employee.Employee",blank=True)
+    Employees = models.ManyToManyField("Employee.Employee", blank=True)
 
     def get_absolute_url(self):
         return reverse("Job", args=[self.slug])

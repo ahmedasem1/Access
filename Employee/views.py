@@ -50,7 +50,6 @@ def SignUpEmpView(request):
         my_emp.Pluses.set(pluse)
 
         my_emp.save()
-        
 
     return render(request, "SignUpEmp.html", fill_relations)
 
@@ -65,13 +64,13 @@ class SingleEmpView(DetailView):
 
 # displaying all jobs related to each employee
 
+
 def Alljobsview(request):
     employee = Employee.objects.filter(author=request.user.username).first()
     if request.method == "POST":
-        jobs=Job.objects.filter(title__contains=request.POST.get("form-control me-2"))
+        jobs = Job.objects.filter(title__contains=request.POST.get("form-control me-2"))
     if request.method == "GET":
-        jobs = Job.objects.all() 
-        
+        jobs = Job.objects.all()
+
     fill_relations = {"employee": employee, "jobs": jobs}
-    print(employee.Main_skills.all())    
     return render(request, "Jobs.html", fill_relations)
