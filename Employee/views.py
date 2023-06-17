@@ -2,7 +2,7 @@ from django.contrib.messages import constants as messages
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Employee, Main_skill, Pluses
-from Company.models import Job
+from Company.models import Job,Company
 
 
 # filling the employee data
@@ -71,6 +71,19 @@ def Alljobsview(request):
         jobs = Job.objects.filter(title__contains=request.POST.get("form-control me-2"))
     if request.method == "GET":
         jobs = Job.objects.all()
+        job=Job.objects.first().company.get_absolute_url
+        print(job)
 
     fill_relations = {"employee": employee, "jobs": jobs}
     return render(request, "Jobs.html", fill_relations)
+
+# displaying single employee profile
+
+def SingleEmpView(request, group_id):
+    context = Employee.objects.filter(author=request.user.username).first()
+    employee = Employee.objects.filter(id=group_id).first()
+    print(group_id)
+    
+
+    fill_relations = {"employee": employee, "context": context}
+    return render(request, "SingleEmp.html", fill_relations)

@@ -47,7 +47,7 @@ class Employee(models.Model):
     Pluses = models.ManyToManyField(Pluses)
 
     def get_absolute_url(self):
-        return reverse("Employee", args=[self.slug])
+        return reverse("Employee", args=[self.id])
 
     def __str__(self):
         return f"{self.first_name} ({self.last_name})"

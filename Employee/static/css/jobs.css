@@ -92,4 +92,8 @@ body {
 
 
 }
+.col.tag_none{
+  color: #000000;
+  text-decoration:none;
+}
 /* .navbar navbar-expand-lg navbar-dark bg-dark */

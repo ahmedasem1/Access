@@ -32,7 +32,7 @@ class Company(models.Model):
 
     # relations
     def get_absolute_url(self):
-        return reverse("Company", args=[self.slug])
+        return reverse("company", args=[self.id])
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

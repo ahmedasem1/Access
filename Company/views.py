@@ -1,11 +1,9 @@
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import DetailView
-from .models import Company
+from .models import Company,Job
+from Employee.models import Employee
 
 
-class SingleComView(DetailView):
-    template_name = "Company/SingleCom.html"
-    model = Company
+
 
 
 def SignUpComView(request):
@@ -43,3 +41,14 @@ def SignUpComView(request):
         my_com.save()
 
     return render(request, "Company/SignUpCom.html")
+
+def SingleComView(request, group_id):
+    context = Company.objects.filter(author=request.user.username).first()
+    if context is None:
+        context = Employee.objects.filter(author=request.user.username).first()
+        
+    company = Company.objects.filter(id=group_id).first()
+    jobs=Job.objects.filter(company=company)
+    print(jobs)
+    fill_relations = {"company": company, "context": context,"jobs":jobs}
+    return render(request, "Company/SingleCom.html", fill_relations)
