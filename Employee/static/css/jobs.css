@@ -69,6 +69,8 @@ body {
 .job_tag{
   color: #0d6efd;
   text-decoration:none;
+  font-size: larger;
+  font-weight:700 !important;
 
 }
 .type{

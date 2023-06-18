@@ -8,11 +8,14 @@
   <title>
     home page
   </title>
- <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <!--Stylesheet-->
-    <link href="https://unpkg.com/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="icon" type="image/jpg" href="static\images\logo.jpg">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <!--Stylesheet-->
+  <link href="https://unpkg.com/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://unpkg.com/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
@@ -33,7 +36,7 @@
               <a class="nav-link" href="#">Home</a>
             </li>
             <li class="brand">
-              <a class="nav-link" href="#">Companies</a>
+              <a class="nav-link" href="{% url 'companys' %}">Companies</a>
             </li>
           </ul>
           <div class="form_control">
@@ -58,19 +61,20 @@
         {% for job in jobs%}
           <div class="css-1i76nwa">
             <div style="display: flex;">
-            <a class="job_tag"href="{{job.company.get_absolute_url}}">{{ job.title }}</a><div class="type"> {{job.type}}</div></div>
+            <a class="job_tag"href="{{job.get_absolute_url}}">{{ job.title }}</a><div class="type"> {{job.type}}</div></div>
           <div class="row">
-            <div class="col">
+            <div class="col-10">
+              
             <a class="tag_none"href="{{job.company.get_absolute_url}}" style="color:black;text-decoration:none;">{{ job.company.name }} </a>
-             <br>
-             {{ job.description }} <br><br>
+             <br><br>
+             <span style="white-space: pre-wrap;">{{ job.description }}</span><br><br>
 
 
         {% for skill in job.Main_skill.all%}
             {% if skill in employee.Main_skills.all %}
-              <button type="button" class="btn btn-success">{{skill.name}}</button>
+              <button type="button" class="btn btn-success mb-3">{{skill.name}}</button>
             {% else %}
-            <button type="button" class="btn btn-danger">{{skill.name}}</button>
+            <button type="button" class="btn btn-danger mb-3">{{skill.name}}</button>
             {% endif %}
 
           {% endfor %}  

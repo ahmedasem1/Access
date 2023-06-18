@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 import datetime
-from Company.models import Company
+# from Company.models import Company
 
 
 from django.utils.text import slugify
@@ -47,30 +47,10 @@ class Employee(models.Model):
     Pluses = models.ManyToManyField(Pluses)
 
     def get_absolute_url(self):
-        return reverse("Employee", args=[self.id])
+        return reverse("employee", args=[self.id])
 
     def __str__(self):
         return f"{self.first_name} ({self.last_name})"
 
 
-class Experience(models.Model):
-    title = models.CharField(max_length=80)
-    description = models.CharField(max_length=500, null=True)
-    start_date = models.DateField(
-        auto_now=False, auto_now_add=False, null=True, blank=True
-    )
-    end_date = models.DateField(
-        auto_now=False, auto_now_add=False, default=datetime.date.today()
-    )
 
-    # relations
-    company = models.ForeignKey(
-        Company,
-        on_delete=models.CASCADE,
-        null=False,
-        default="freelance",
-    )
-    Employee = models.ForeignKey(Employee, on_delete=models.CASCADE, default="5")
-
-    def __str__(self):
-        return f"{self.title}"

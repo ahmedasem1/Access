@@ -4,6 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
 from django.utils.text import slugify
 from django.apps import apps
+import datetime
 
 # Create your models here.
 
@@ -59,7 +60,29 @@ class Job(models.Model):
     Employees = models.ManyToManyField("Employee.Employee", blank=True)
 
     def get_absolute_url(self):
-        return reverse("Job", args=[self.slug])
+        return reverse("SingleJob", args=[self.id])
 
     def __str__(self):
         return f"{self.title} ({self.company.name})"
+    
+class Experience(models.Model):
+    title = models.CharField(max_length=80)
+    description = models.CharField(max_length=500, null=True)
+    start_date = models.DateField(
+        auto_now=False, auto_now_add=False, null=True, blank=True
+    )
+    end_date = models.DateField(
+        auto_now=False, auto_now_add=False, default=datetime.date.today()
+    )
+
+    # relations
+    company = models.ForeignKey(
+        "Company.Company",
+        on_delete=models.CASCADE,
+        null=False,
+        default="freelance",
+    )
+    Employee = models.ForeignKey("Employee.Employee", on_delete=models.CASCADE, default="5")
+
+    def __str__(self):
+        return f"{self.title}"

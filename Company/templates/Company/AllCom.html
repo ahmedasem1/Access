@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    All Companies
+  </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <!--Stylesheet-->
+  <link href="https://unpkg.com/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://unpkg.com/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="{% static 'css/singleemp.css' %}">
+</head>
+<body>
+  <section style="background-color: #eee;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container-fluid">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="brand">
+              <a class="nav-link active" aria-current="page" href="#">Access</a>
+            </li>
+            <li class="brand">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="brand">
+              <a class="nav-link" href="{% url 'companys' %}">Companies</a>
+            </li>
+          </ul>
+          <div class="form_control">
+
+        </div>
+        {% if context.last_name%}
+        <p class="name">{{ context.first_name }}
+        {{context.last_name }}</p>
+        {% else %}
+        <p class="name">{{ context.name }}</p>
+    {% endif %}
+
+        <img class="img_nav" src="{{ context.image.url}}" alt="Paris" width="40px" height="40px" >
+      </div>
+    </nav>
+    <br>
+
+    <h4 class="h4">Explore All Companies</h1>
+        <br>
+  
+      <ul>
+        
+  
+          {% for company in companys%}
+            <div class="css-1i76nwa">
+              <div style="display: flex;">
+              <a class="job_tag"href="{{company.get_absolute_url}}">{{ company.name }}</a></div>
+            <div class="row">
+              <div class="col">
+              <p>{{company.feild }} company </p>
+               <br>
+               {{ company.description }} <br><br>
+  
+  
+          {% comment %} {% for skill in job.Main_skill.all%}
+              {% if skill in employee.Main_skills.all %}
+                <button type="button" class="btn btn-success">{{skill.name}}</button>
+              {% else %}
+              <button type="button" class="btn btn-danger">{{skill.name}}</button>
+              {% endif %}
+  
+            {% endfor %}   {% endcomment %}
+  
+        </div>
+  
+        <div  class="col">
+          <a class="tag_none"href="{{company.get_absolute_url}}">
+        <img src="{{company.image.url}}" alt="image link" width="100px" height="100px" class="rounded float-end">
+          </a>
+      </div>
+  
+      </div>
+  
+      </div>
+  
+          {% endfor %}
+          
+  
+        </ul>
+
+
+    </body>
+
+        </html>

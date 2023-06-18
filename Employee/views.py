@@ -51,15 +51,13 @@ def SignUpEmpView(request):
 
         my_emp.save()
 
-    return render(request, "SignUpEmp.html", fill_relations)
+    return render(request, "Employee/SignUpEmp.html", fill_relations)
 
 
 # display each employee profile
 
 
-class SingleEmpView(DetailView):
-    template_name = "SingleEmp.html"
-    model = Employee
+
 
 
 # displaying all jobs related to each employee
@@ -71,19 +69,18 @@ def Alljobsview(request):
         jobs = Job.objects.filter(title__contains=request.POST.get("form-control me-2"))
     if request.method == "GET":
         jobs = Job.objects.all()
-        job=Job.objects.first().company.get_absolute_url
-        print(job)
+        print(Job.objects.last().get_absolute_url)
+
 
     fill_relations = {"employee": employee, "jobs": jobs}
-    return render(request, "Jobs.html", fill_relations)
+    return render(request, "Employee/Jobs.html", fill_relations)
 
 # displaying single employee profile
 
 def SingleEmpView(request, group_id):
     context = Employee.objects.filter(author=request.user.username).first()
     employee = Employee.objects.filter(id=group_id).first()
-    print(group_id)
     
 
     fill_relations = {"employee": employee, "context": context}
-    return render(request, "SingleEmp.html", fill_relations)
+    return render(request, "Employee/SingleEmp.html", fill_relations)
