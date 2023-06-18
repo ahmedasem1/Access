@@ -20,9 +20,7 @@ class Company(models.Model):
 
     description = models.CharField(max_length=500)
 
-    rating = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(10)]
-    )
+
 
     contanct_number = models.CharField(max_length=100)
     feild = models.CharField(max_length=200, null=True)

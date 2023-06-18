@@ -18,12 +18,10 @@ def SignUpComView(request):
         image = request.FILES.get("image")
 
         description = request.POST.get("description")
-        Dob = request.POST.get("Dob")
         contanct_number = request.POST.get("contanct_number")
 
         feild = request.POST.get("feild")
-        rating = request.POST.get("rating")
-        date = request.POST.get("date")
+        Dob = request.POST.get("Dob")
 
         my_com = Company.objects.create(
             name=name,
@@ -32,11 +30,9 @@ def SignUpComView(request):
             city=city,
             postal_code=postal_code,
             description=description,
-            Dob=Dob,
             contanct_number=contanct_number,
             feild=feild,
-            rating=rating,
-            date=date,
+            date=Dob,
             author=request.user.username,
         )
         my_com.save()
