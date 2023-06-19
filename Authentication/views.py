@@ -48,7 +48,11 @@ def LoginPage(request):
         user = authenticate(request, username=username, password=pass1)
         if user is not None:
             login(request, user)
-            return redirect("jobs")
+            if user.first_name=="emp":
+                return redirect("jobs")
+            else:
+                return redirect("home_com")
+
         else:
             messages.error(request, "Username or Password is incorrect!!!")
             return redirect("login")

@@ -34,13 +34,14 @@ class Employee(models.Model):
     postal_code = models.CharField(max_length=5, null=True)
     city = models.CharField(max_length=50, null=True)
 
-    description = models.CharField(max_length=500)
+    description = models.TextField(max_length=2000)
     Dob = models.DateField(auto_now=False, auto_now_add=False)
     contanct_number = models.CharField(max_length=100)
     feild = models.CharField(max_length=200, null=True)
     author = models.EmailField(max_length=100, null=False)
 
     slug = models.SlugField(default="", blank=True, null=False, db_index=True)
+    order=models.IntegerField(null=True)
 
     # relations
     Main_skills = models.ManyToManyField(Main_skill)

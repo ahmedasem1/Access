@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
 
   <title>
-    home page
+    Applied Candidates
   </title>
 
   <link rel="icon" type="image/jpg" href="static\images\logo.jpg">
@@ -58,36 +58,40 @@
     <ul>
       
 
-        {% for job in jobs%}
+        {% for employee in employees%}
           <div class="css-1i76nwa">
             <div style="display: flex;">
-            <a class="job_tag"href="{{job.get_absolute_url}}">{{ job.title }}</a><div class="type"> {{job.type}}</div></div>
+            <a class="job_tag"href="{{employee.get_absolute_url}}">{{ employee.first_name }} {{employee.last_name}}</a></div>
           <div class="row">
             <div class="col-10">
               
-            <a class="tag_none"href="{{job.company.get_absolute_url}}" style="color:black;text-decoration:none;"><strong>{{ job.company.name }} </strong></a>
-             <br><br>
-             <span style="white-space: pre-wrap;">{{ job.description }}</span><br><br>
+            {% comment %} <a class="tag_none"href="{{job.company.get_absolute_url}}" style="color:black;text-decoration:none;">{{ job.company.name }} </a> {% endcomment %}
+             <br>
+             <span style="white-space: pre-wrap;">{{ employee.description }}</span><br><br>
 
 
-        {% for skill in job.Main_skill.all%}
-            {% if skill in employee.Main_skills.all %}
+        {% for skill in employee.Main_skills.all%}
+            {% if skill in jobs.Main_skill.all %}
               <button type="button" class="btn btn-success mb-3">{{skill.name}}</button>
-              {% endif %}
+            {% endif %}
+
+            
 
           {% endfor %}  
-          {% for skill in job.Main_skill.all%}
-            {% if skill not in employee.Main_skills.all %}
+          {% for skill in employee.Main_skills.all%}
+            {% if skill not in jobs.Main_skill.all %}
               <button type="button" class="btn btn-danger mb-3">{{skill.name}}</button>
-              {% endif %}
+            {% endif %}
+
+            
 
           {% endfor %}  
 
       </div>
 
       <div  class="col">
-        <a class="tag_none"href="{{job.company.get_absolute_url}}">
-      <img src="{{ job.company.image.url}}" alt="Paris" width="100px" height="100px" class="rounded float-end">
+        <a class="tag_none"href="{{employee.get_absolute_url}}">
+      <img src="{{ employee.image.url}}" alt="Paris" width="100px" height="100px" class="rounded float-end">
         </a>
     </div>
 

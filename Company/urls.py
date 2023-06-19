@@ -7,6 +7,7 @@ urlpatterns = [
     path("companys", views.AllComView, name="companys"),
     path("signupcomp", views.SignUpComView, name="signupcomp"),
     path("job/<int:job_id>/", views.SingleJobView, name="SingleJob"),
-
-    # path("registerjob", views.RegisterJobView, name="registerjob"),
+    path("home",  views.HomeComView, name="home_com"),
+    path("appliedemp/<int:job_id>/",  views.AppEmpView, name="appliedemp"),
+    path("registerjob", views.RegisterJobView, name="registerjob"),
 ]

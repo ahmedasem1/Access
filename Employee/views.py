@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Employee, Main_skill, Pluses
 from Company.models import Job,Company
+from django.shortcuts import render, redirect
 
 
 # filling the employee data
@@ -30,8 +31,8 @@ def SignUpEmpView(request):
 
         feild = request.POST.get("feild")
 
-        skills = request.POST.get("skills")
-        pluse = request.POST.get("pluse")
+        skills = request.POST.getlist("skills")
+        pluse = request.POST.getlist("pluse")
 
         my_emp = Employee.objects.create(
             first_name=first_name,
@@ -50,15 +51,10 @@ def SignUpEmpView(request):
         my_emp.Pluses.set(pluse)
 
         my_emp.save()
+        return redirect("jobs")
+
 
     return render(request, "Employee/SignUpEmp.html", fill_relations)
-
-
-# display each employee profile
-
-
-
-
 
 # displaying all jobs related to each employee
 
@@ -69,7 +65,18 @@ def Alljobsview(request):
         jobs = Job.objects.filter(title__contains=request.POST.get("form-control me-2"))
     if request.method == "GET":
         jobs = Job.objects.all()
-        print(Job.objects.last().get_absolute_url)
+
+        x=0
+        for job in jobs:
+            for skill in job.Main_skill.all():
+                if skill in employee.Main_skills.all():
+                    x=x+1
+            job.order=x
+            job.save()
+
+            
+                    
+        jobs = Job.objects.order_by('order')
 
 
     fill_relations = {"employee": employee, "jobs": jobs}

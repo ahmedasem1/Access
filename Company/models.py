@@ -18,7 +18,7 @@ class Company(models.Model):
     postal_code = models.CharField(max_length=5, null=True)
     city = models.CharField(max_length=50, null=True)
 
-    description = models.CharField(max_length=500)
+    description = models.TextField(max_length=2000)
 
 
 
@@ -44,17 +44,15 @@ class Company(models.Model):
 class Job(models.Model):
     title = models.CharField(max_length=100)
 
-    description = models.CharField(max_length=500)
+    description = models.TextField(max_length=2000)
     type = models.CharField(max_length=500, null=True)
-    salary = models.IntegerField()
-    hours = models.IntegerField(null=True)
     slug = models.SlugField(default="", blank=True, null=False, db_index=True)
     feild = models.CharField(max_length=200, null=True)
-
+    order= models.IntegerField(null=True)
     # relations
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     Main_skill = models.ManyToManyField("Employee.Main_skill")
-    Pluses = models.ManyToManyField("Employee.Pluses")
+    Pluses = models.ManyToManyField("Employee.Pluses" ,null=True)
     Employees = models.ManyToManyField("Employee.Employee", blank=True)
 
     def get_absolute_url(self):
