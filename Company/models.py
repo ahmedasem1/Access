@@ -61,24 +61,3 @@ class Job(models.Model):
     def __str__(self):
         return f"{self.title} ({self.company.name})"
     
-class Experience(models.Model):
-    title = models.CharField(max_length=80)
-    description = models.CharField(max_length=500, null=True)
-    start_date = models.DateField(
-        auto_now=False, auto_now_add=False, null=True, blank=True
-    )
-    end_date = models.DateField(
-        auto_now=False, auto_now_add=False, default=datetime.date.today()
-    )
-
-    # relations
-    company = models.ForeignKey(
-        "Company.Company",
-        on_delete=models.CASCADE,
-        null=False,
-        default="freelance",
-    )
-    Employee = models.ForeignKey("Employee.Employee", on_delete=models.CASCADE, default="5")
-
-    def __str__(self):
-        return f"{self.title}"
