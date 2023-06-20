@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
-    Employee
+    My Profile
   </title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -28,16 +28,9 @@
     <td>{{ w }}</td>
   </tr>
   {% endfor %}
-  <br>
+  <br>{% endcomment %}
 
-  {% for w in employee.experience_set.all %}
-  <tr>
-    <td>{{ w.title }}</td>
-  </tr>
-  <p>
-    <p>
-  {% endfor %} {% endcomment %}
-  
+
   <section style="background-color: #eee;">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container-fluid">
@@ -55,13 +48,8 @@
           <div class="form_control">
 
         </div>
-        
-        {% if context.last_name%}
         <p class="name">{{ context.first_name }}
         {{context.last_name }}</p>
-        {% else %}
-        <p class="name">{{ context.name }}</p>
-    {% endif %}
         <img class="img_nav" src="{{ context.image.url}}" alt="Paris" width="40px" height="40px" >
       </div>
     </nav>
@@ -152,48 +140,53 @@
               </div>
             </div>
           </div>
+          
           <div class="row">
-            <div class="col-md-6">
-              <div class="row">
+          </div>
+          </div>
             
-              </div>
-            </div>
 
-                <h5>Past Experiance</h5>
+                    <h5>Past Experiance</h5>
 
-        <div class="card mb-6">
+            <div class="card mb-6">
 
-    <div class="card-body">
-        
-        
+        <div class="card-body">
+            
+            
 
-      {% for exp in experience%}
-  {% comment %} <div class="css-1i76nwa"> {% endcomment %}
-    <div style="display: flex;">
-    <strong>{{ exp.title }}</strong><div class="type"> {{exp.type}}</div></div>
-  <div class="row">
-    <div class="col-10">
-      <p>{{ exp.company }} </p>
+          {% for exp in experience%}
+      {% comment %} <div class="css-1i76nwa"> {% endcomment %}
+        <div style="display: flex;">
+        <strong>{{ exp.title }}</strong><div class="type"> {{exp.type}}</div></div>
+      <div class="row">
+        <div class="col-10">
+          <p>{{ exp.company }} </p>
+             
+             <p> <b>From</b> {{ exp.start_date }} <b>To</b> {{ exp.end_date }}</p> 
+             <span style="white-space: pre-wrap;">{{ exp.description }}</span><br><br>
+
+
+    
+
+      
+
+    </div>
+
+   
+
+  </div>
+
+  </div>
+
+      {% endfor %}
          
-         <p> <b>From</b> {{ exp.start_date }} <b>To</b> {{ exp.end_date }}</p> 
-         <span style="white-space: pre-wrap;">{{ exp.description }}</span><br><br>
-
-
-
-
-  
-
-</div>
-
-
-
-</div>
-
-</div>
-
-  {% endfor %}
-     
-  </div> 
+      </div> 
+      <div class="col-md-6">
+        <a href="{% url 'registerexp' pro_id=employee.id %}">
+            <button type="button" class="btn btn-primary btn-lg" style="position:fixed;
+            right: 10px;
+            bottom: 10px;">Add Experiance</button> </a>
+  </div>
              
           </div>
         </div>

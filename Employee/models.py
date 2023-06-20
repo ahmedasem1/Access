@@ -57,7 +57,7 @@ class Employee(models.Model):
 
 class Exp(models.Model):
     title = models.CharField(max_length=80)
-    description = models.CharField(max_length=500, null=True)
+    description = models.TextField(max_length=2000, null=True)
     start_date = models.DateField(
         auto_now=False, auto_now_add=False, null=True, blank=True
     )
@@ -65,10 +65,12 @@ class Exp(models.Model):
         auto_now=False, auto_now_add=False, default=datetime.date.today()
     )
     company = models.CharField(max_length=500)
+    type = models.CharField(max_length=500, null=True)
+    feild = models.CharField(max_length=200, null=True)
 
     # relations
     
-    Employee = models.ForeignKey(Employee ,on_delete=models.CASCADE, default="5")
+    emp = models.ForeignKey(Employee ,on_delete=models.CASCADE, default="5")
 
     def __str__(self):
         return f"{self.title}"

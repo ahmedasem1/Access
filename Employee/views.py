@@ -1,7 +1,7 @@
 from django.contrib.messages import constants as messages
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Employee, Main_skill, Pluses
+from .models import Employee, Main_skill, Pluses,Exp
 from Company.models import Job,Company
 from django.shortcuts import render, redirect
 
@@ -85,9 +85,58 @@ def Alljobsview(request):
 # displaying single employee profile
 
 def SingleEmpView(request, group_id):
-    context = Employee.objects.filter(author=request.user.username).first()
+    context = Company.objects.filter(author=request.user.username).first()
     employee = Employee.objects.filter(id=group_id).first()
+    experience= Exp.objects.filter(emp=employee).all()
+
+    if context is None:
+        context = Employee.objects.filter(author=request.user.username).first()
+        if context.id==employee.id:
+            return redirect('profileemp',pro_id=group_id)
+
+    
     
 
-    fill_relations = {"employee": employee, "context": context}
+    fill_relations = {"employee": employee, "context": context,"experience":experience}
     return render(request, "Employee/SingleEmp.html", fill_relations)
+
+def ProfileEmpView(request, pro_id):
+    context = Employee.objects.filter(author=request.user.username).first()
+    employee = Employee.objects.filter(id=pro_id).first()
+    experience= Exp.objects.filter(emp=employee).all()
+
+    fill_relations = {"employee": employee, "context": context,"experience":experience}
+    return render(request, "Employee/profileemp.html", fill_relations)
+
+def RegisterExpView(request,pro_id):
+    context = Employee.objects.filter(author=request.user.username).first()   
+    if request.method == "POST":
+        title = request.POST.get("title")
+        # context = Company.objects.filter(author=request.user.username).first()   
+        description = request.POST.get("description")
+        start_date = request.POST.get("start_date")
+        end_date = request.POST.get("end_date")
+
+
+        feild = request.POST.get("feild")
+        type = request.POST.get("type")
+        company = request.POST.get("company")
+
+
+        my_Exp= Exp.objects.create(
+            title=title,
+            company=company,
+            description=description,
+            feild=feild,
+            type=type,
+            Employee=context,
+            start_date=start_date,
+            end_date=end_date,
+        )
+
+        my_Exp.save()
+        return redirect('profileemp',pro_id=pro_id)
+    company = Company.objects.all()
+
+    fill_relations = {"companys": company, "context": context}
+    return render(request, "Employee/RegisterExp.html", fill_relations)

@@ -5,7 +5,7 @@ from Company.views import *
 
 class TestUrls(SimpleTestCase):
     def test_SingleCom_is_resolved(self):
-        url = reverse("company", args=["1"])
+        url = reverse("company", args=["5"])
         self.assertEquals(resolve(url).func.view_class, SingleComView)
 
     def test_SignUpCom_is_resolved(self):
