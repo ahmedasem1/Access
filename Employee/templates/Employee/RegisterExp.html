@@ -27,7 +27,7 @@
                   <a class="nav-link active" aria-current="page" href="#">Access</a>
                 </li>
                 <li class="brand">
-                  <a class="nav-link" href="#">Home</a>
+                  <a class="nav-link" href="{% url 'jobs' %}">Home</a>
                 </li>
                 <li class="brand">
                   <a class="nav-link" href="{% url 'companys' %}">Companies</a>
@@ -118,6 +118,19 @@
                   </div>
                 </div>
                     <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Gained Skills </p>
+                      </div>
+                      <div class="col-sm-9">
+                        <select class="form-control" id="skills" name='skills'multiple>
+                          {% for skill in context.Main_skills.all %}
+                              <option value='{{skill.id}}'>{{ skill.name }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                      <hr>
                     <div class="row">
                       <div class="col-sm-3">
                         <p class="mb-0">Description</p>

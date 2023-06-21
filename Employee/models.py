@@ -69,6 +69,7 @@ class Exp(models.Model):
     feild = models.CharField(max_length=200, null=True)
 
     # relations
+    Main_skills = models.ManyToManyField(Main_skill)
     
     emp = models.ForeignKey(Employee ,on_delete=models.CASCADE, default="5")
 

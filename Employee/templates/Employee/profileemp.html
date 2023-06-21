@@ -39,7 +39,7 @@
               <a class="nav-link active" aria-current="page" href="#">Access</a>
             </li>
             <li class="brand">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="{% url 'jobs' %}">Home</a>
             </li>
             <li class="brand">
               <a class="nav-link" href="{% url 'companys' %}">Companies</a>
@@ -48,8 +48,7 @@
           <div class="form_control">
 
         </div>
-        <p class="name">{{ context.first_name }}
-        {{context.last_name }}</p>
+        <p class="name">Me</p>
         <img class="img_nav" src="{{ context.image.url}}" alt="Paris" width="40px" height="40px" >
       </div>
     </nav>
@@ -143,7 +142,6 @@
           
           <div class="row">
           </div>
-          </div>
             
 
                     <h5>Past Experiance</h5>
@@ -163,7 +161,27 @@
           <p>{{ exp.company }} </p>
              
              <p> <b>From</b> {{ exp.start_date }} <b>To</b> {{ exp.end_date }}</p> 
+             {% if exp.Main_skills.all %}
+             <div style="display:flex">
+              <div>
+                <p style="margin-right:20px"> Skills:    </p>
+                </div>
+
+             <div class="col-sm-9">                <div>
+
+              {% for skill in exp.Main_skills.all%}
+                <button type="button" class="btn btn-primary">{{skill.name}}</button>
+              
+  
+            {% endfor %}  
+          </div>
+        </div>
+        {% endif %}
+
+  
+            </div>
              <span style="white-space: pre-wrap;">{{ exp.description }}</span><br><br>
+             
 
 
     
@@ -171,7 +189,6 @@
       
 
     </div>
-
    
 
   </div>

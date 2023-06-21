@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
-    Employee
+    {{ employee.first_name }} {{ employee.last_name }}
   </title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -46,8 +46,12 @@
               <a class="nav-link active" aria-current="page" href="#">Access</a>
             </li>
             <li class="brand">
-              <a class="nav-link" href="#">Home</a>
-            </li>
+              {% if context.last_name%}
+              <a class="nav-link" href="{% url 'jobs' %}">Home</a>
+
+        {% else %}
+        <a class="nav-link" href="{% url 'home_com' %}">Home</a>
+        {% endif %}             </li>
             <li class="brand">
               <a class="nav-link" href="{% url 'companys' %}">Companies</a>
             </li>
@@ -153,6 +157,9 @@
             </div>
           </div>
           <div class="row">
+
+          </div>
+
             <div class="col-md-6">
               <div class="row">
             

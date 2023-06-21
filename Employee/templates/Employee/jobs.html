@@ -30,10 +30,10 @@
       <div class="container-fluid">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="brand">
-              <a class="nav-link active" aria-current="page" href="#">Access</a>
+              <a class="nav-link " aria-current="page" href="#">Access</a>
             </li>
             <li class="brand">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link active"  href="#">Home</a>
             </li>
             <li class="brand">
               <a class="nav-link" href="{% url 'companys' %}">Companies</a>
@@ -48,7 +48,9 @@
         </div>
         <p class="name">{{ employee.first_name }}
         {{employee.last_name }}</p>
-        <img class="img_nav" src="{{ employee.image.url}}" alt="Paris" width="40px" height="40px" >
+        <a href="{% url 'profileemp' pro_id=employee.id %}">
+
+        <img class="img_nav" src="{{ employee.image.url}}" alt="Paris" width="40px" height="40px" ></a>
       </div>
     </nav>
     <br>

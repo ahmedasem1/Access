@@ -71,12 +71,16 @@ def Alljobsview(request):
             for skill in job.Main_skill.all():
                 if skill in employee.Main_skills.all():
                     x=x+1
+                if skill not in employee.Main_skills.all():
+                    x=x-1
+
             job.order=x
+
             job.save()
 
             
                     
-        jobs = Job.objects.order_by('order')
+        jobs = Job.objects.order_by('-order')
 
 
     fill_relations = {"employee": employee, "jobs": jobs}
@@ -121,6 +125,9 @@ def RegisterExpView(request,pro_id):
         feild = request.POST.get("feild")
         type = request.POST.get("type")
         company = request.POST.get("company")
+        skills = request.POST.getlist("skills")
+
+
 
 
         my_Exp= Exp.objects.create(
@@ -132,6 +139,7 @@ def RegisterExpView(request,pro_id):
             Employee=context,
             start_date=start_date,
             end_date=end_date,
+            Main_skills=skills  
         )
 
         my_Exp.save()

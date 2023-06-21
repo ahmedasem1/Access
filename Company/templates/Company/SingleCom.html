@@ -46,7 +46,13 @@
               <a class="nav-link active" aria-current="page" href="#">Access</a>
             </li>
             <li class="brand">
-              <a class="nav-link" href="#">Home</a>
+              {% if context.last_name%}
+              <a class="nav-link" href="{% url 'jobs' %}">Home</a>
+
+        {% else %}
+        <a class="nav-link" href="{% url 'home_com' %}">Home</a>
+        {% endif %}
+
             </li>
             <li class="brand">
               <a class="nav-link" href="{% url 'companys' %}">Companies</a>
