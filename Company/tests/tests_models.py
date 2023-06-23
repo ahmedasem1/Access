@@ -13,8 +13,7 @@ class TestModels(TestCase):
             date="2023-05-10",
             contanct_number="01159885855",
             feild="feild",
-            rating=1,
             author="aasem8059@gmail.com",
         )
         com.save()
-        self.assertEquals(com.slug, "microsoft-teams")
+        self.assertEquals(com.name, "microsoft teams")

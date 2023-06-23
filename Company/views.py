@@ -147,9 +147,11 @@ def AppEmpView(request, job_id):
             for skill in employee.Main_skills.all():
                 if skill in jobs.Main_skill.all():
                     x=x+1
+                if skill not in employee.Main_skills.all():
+                    x=x-1    
             employee.order=x
             employee.save()
-        employee = Employee.objects.order_by('order')
+        employee = Employee.objects.order_by('-order')
 
     fill_relations = {"company": company, "jobs": jobs,"employees":employees}
     return render(request, "Company/apply_jobs.html", fill_relations)

@@ -10,7 +10,7 @@ class TestUrls(SimpleTestCase):
 
     def test_SingleEmp_is_resolved(self):
         url = reverse("employee", args=["1"])
-        self.assertEquals(resolve(url).func.view_class, SingleEmpView)
+        self.assertEquals(resolve(url).func, SingleEmpView)
 
     def test_Joblist_is_resolved(self):
         url = reverse("jobs")

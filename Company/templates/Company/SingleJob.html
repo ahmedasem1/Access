@@ -43,7 +43,7 @@
       <div class="container-fluid">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="brand">
-              <a class="nav-link active" aria-current="page" href="#">Access</a>
+              <a class="nav-link " aria-current="page" href="#">Access</a>
             </li>
             <li class="brand">
               {% if context.last_name%}
@@ -82,9 +82,10 @@
           <div class="card mb-4">
             <div class="card-body text-center">
               <img src="{{ company.image.url }}"
-                class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3"><strong>{{ company.name }}</strong></h5>
-              <p class="text-muted mb-1">{{ company.feild }}</p>
+                class="rounded-circle img-fluid" style="width: 150px;"><br>
+            <a class="tag_none"href="{{company.get_absolute_url}}" style="color:black;text-decoration:none;"><strong>{{ job.company.name }} </strong></a>
+
+              <p class="text-muted mb-1">{{ company.feild }} Company</p>
               <div class="d-flex justify-content-center mb-2">
 
               </div>
@@ -131,12 +132,16 @@
     
                     {% for skill in job.Main_skill.all%}
                         {% if skill in context.Main_skills.all %}
-                          <button type="button" class="btn btn-success">{{skill.name}}</button>
-                        {% else %}
-                        <button type="button" class="btn btn-danger">{{skill.name}}</button>
-                        {% endif %}
+                          <button type="button" class="btn btn-success ">{{skill.name}}</button>
+                          {% endif %}
               
                       {% endfor %}  
+                      {% for skill in job.Main_skill.all%}
+                      {% if skill not in context.Main_skills.all %}
+                        <button type="button" class="btn btn-danger ">{{skill.name}}</button>
+                        {% endif %}
+            
+                    {% endfor %}   
                   {% else %}
                     {% for skill in job.Main_skill.all%}
                           <button type="button" class="btn btn-primary">{{skill.name}}</button>
