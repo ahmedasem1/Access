@@ -43,7 +43,7 @@
       <div class="container-fluid">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="brand">
-              <a class="nav-link active" aria-current="page" href="#">Access</a>
+              <a class="nav-link " aria-current="page" href="#"><b>access</b></a>
             </li>
             <li class="brand">
               {% if context.last_name%}
@@ -67,8 +67,10 @@
         {% else %}
         <p class="name">{{ context.name }}</p>
     {% endif %}
+    <a href="{% url 'company' group_id=company.id %}">
 
         <img class="img_nav" src="{{ context.image.url}}" alt="Paris" width="40px" height="40px" >
+    </a>
       </div>
     </nav>
     <div class="container py-5">
@@ -85,7 +87,7 @@
               <img src="{{ company.image.url }}"
                 class="rounded-circle img-fluid" style="width: 150px;">
               <h5 class="my-3"><strong>{{ company.name }}</strong></h5>
-              <p class="text-muted mb-1">{{ company.feild }}</p>
+              <p class="text-muted mb-1">{{ company.feild }} Company</p>
               <div class="d-flex justify-content-center mb-2">
 
               </div>
@@ -161,11 +163,12 @@
             </div>
           <h5>Openings</h5>
 
-            <div class="card mb-4">
-
-        <div class="card-body">
+           
 
           {% for job in jobs%}
+          <div class="card mb-6" style="margin-bottom:20px">
+
+            <div class="card-body">
       {% comment %} <div class="css-1i76nwa"> {% endcomment %}
         <div style="display: flex;">
         <a class="job_tag"href="#">{{ job.title }}</a><div class="type"> {{job.type}}</div></div>
@@ -178,13 +181,31 @@
     {% if context.last_name %}
     
       {% for skill in job.Main_skill.all%}
-          {% if skill in context.Main_skills.all %}
-            <button type="button" class="btn btn-success">{{skill.name}}</button>
-          {% else %}
-          <button type="button" class="btn btn-danger">{{skill.name}}</button>
-          {% endif %}
+      {% if skill in context.Main_skills.all %}
+      <button type="button" class="btn btn-success mb-3">{{skill.name}}</button>
+      {% endif %}
+      {% endfor %}  
+
+      {% for skill in job.Main_skill.all%}
+
+          {% if skill not in context.Main_skills.all %}
+
+            <button type="button" class="btn btn-danger  mb-3">{{skill.name}}</button>
+            {% endif %}
+
 
         {% endfor %}  
+        {% comment %} {% for skill in job.Main_skill.all%}
+            {% if skill in employee.Main_skills.all %}
+              <button type="button" class="btn btn-success mb-3">{{skill.name}}</button>
+              {% endif %}
+
+          {% for skill in job.Main_skill.all%}
+            {% if skill not in employee.Main_skills.all %}
+              <button type="button" class="btn btn-danger mb-3">{{skill.name}}</button>
+              {% endif %} {% endcomment %}
+
+          {% comment %} {% endfor %}   {% endcomment %}
     {% else %}
       {% for skill in job.Main_skill.all%}
             <button type="button" class="btn btn-primary">{{skill.name}}</button>
@@ -202,15 +223,24 @@
   </div>
 
   </div>
+  
 
-  </div>
+  
+{% comment %} </div> {% endcomment %}
+
+</div>
+</div>
+
 
       {% endfor %}
          
-      </div>
-          </div>
+    </div>
+
+</div>
+
+
           
-        </div>
+        
         
       </div>
       

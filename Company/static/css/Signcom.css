@@ -40,19 +40,20 @@ body{
     bottom: -80px;
 }
 form{
-    width: 550px;
+    /* height: 900px; */
+
+    width: 700px;
     background-color: rgba(255,255,255,0.13);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
+    /* position: absolute; */
+    /* transform: translate(-50%,-50%); */
+    /* top: 50%;
+    left: 50%; */
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
-    /* margin-top: 150px; */
-    /* margin-bottom: 150px; */
+    padding:15px;
+    /* margin-top: 350px; */
 
 }
 form *{
@@ -67,8 +68,6 @@ form h3{
     font-weight: 500;
     line-height: 42px;
     text-align: center;
-    /* margin-top: 200px; */
-
 }
 
 label{
@@ -123,6 +122,9 @@ button{
 }
 .social i{
   margin-right: 4px;
+}
+.gap{
+    margin-top: 30px;
 }
 option{
     color: rgb(0, 0, 0)

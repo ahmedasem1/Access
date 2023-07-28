@@ -21,12 +21,12 @@
 </head>
 
 <body>
-    <div class="background">
+    <div class="background"style="display: flex; justify-content: space-around;">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
     
-    <form  method="POST" >
+    <form  method="POST" style="margin-top:50px;margin-bottom:50px;margin-left:25%">
         {% csrf_token %}
         <h3>Sign Up Here</h3>
 
@@ -44,7 +44,7 @@
 
     <div class="fieldWrapper">
         
-        <label for="id_image">Image:</label> <input type="file" name="image" accept="image/*" required id="image" class="form-control" id="inputGroupFile02">
+        <label for="id_image">Image:</label>   <input type="file" class="form-control" id="inputGroupFile01" name="image">
         
     </div>
     <div class="row g-3">    
@@ -79,7 +79,7 @@
 
         <div class="col-md-4">
         
-            <label for="id_Dob"class="form-label">Establishment Date:</label> <input type="date" name="Dob"class="form-control" required id="Dob">
+            <label for="id_Dob"class="form-label">Created :</label> <input type="date" name="Dob"class="form-control" required id="Dob">
             
         </div>
     
@@ -96,7 +96,7 @@
                 <option selected> </option>
                 <option value="Software Engineering">Software Engineering</option>
                 <option value="Mechanical Engineering">Mechanical Engineering</option>
-                <option value="Markting">Markting</option>
+                <option value="Business Field">Business Field</option>
               </select>
         </div>
     

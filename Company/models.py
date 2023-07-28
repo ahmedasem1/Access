@@ -13,6 +13,7 @@ class Company(models.Model):
     name = models.CharField(max_length=100)
 
     image = models.ImageField(upload_to="images/", null=True)
+    
 
     street = models.CharField(max_length=80, null=True)
     postal_code = models.CharField(max_length=5, null=True)
@@ -52,7 +53,6 @@ class Job(models.Model):
     # relations
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     Main_skill = models.ManyToManyField("Employee.Main_skill")
-    Pluses = models.ManyToManyField("Employee.Pluses" ,null=True)
     Employees = models.ManyToManyField("Employee.Employee", blank=True)
 
     def get_absolute_url(self):

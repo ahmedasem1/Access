@@ -30,7 +30,7 @@
       <div class="container-fluid">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="brand">
-              <a class="nav-link " aria-current="page" href="#">Access</a>
+              <a class="nav-link " aria-current="page" href="#"><b>access</b></a>
             </li>
             <li class="brand">
               <a class="nav-link active"  href="#">Home</a>
@@ -61,6 +61,8 @@
       
 
         {% for job in jobs%}
+          {% if job.feild in employee.feild %}
+
           <div class="css-1i76nwa">
             <div style="display: flex;">
             <a class="job_tag"href="{{job.get_absolute_url}}">{{ job.title }}</a><div class="type"> {{job.type}}</div></div>
@@ -85,6 +87,7 @@
 
           {% endfor %}  
 
+
       </div>
 
       <div  class="col">
@@ -96,8 +99,10 @@
     </div>
 
     </div>
+    {% endif %}
 
         {% endfor %}
+
         
 
       </ul>

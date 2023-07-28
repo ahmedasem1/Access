@@ -16,12 +16,6 @@ class Main_skill(models.Model):
         return f"{self.name}"
 
 
-class Pluses(models.Model):
-    name = models.CharField(max_length=80)
-    description = models.CharField(max_length=500, null=True)
-
-    def __str__(self):
-        return f"{self.name}"
 
 
 class Employee(models.Model):
@@ -45,7 +39,6 @@ class Employee(models.Model):
 
     # relations
     Main_skills = models.ManyToManyField(Main_skill)
-    Pluses = models.ManyToManyField(Pluses)
 
     def get_absolute_url(self):
         return reverse("employee", args=[self.id])

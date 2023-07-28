@@ -1,7 +1,7 @@
 from django.contrib.messages import constants as messages
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Employee, Main_skill, Pluses,Exp
+from .models import Employee, Main_skill, Exp
 from Company.models import Job,Company
 from django.shortcuts import render, redirect
 
@@ -11,9 +11,8 @@ from django.shortcuts import render, redirect
 
 def SignUpEmpView(request):
     main = Main_skill.objects.all()
-    plus = Pluses.objects.all()
 
-    fill_relations = {"main": main, "plus": plus}
+    fill_relations = {"main": main, }
 
     if request.method == "POST":
         first_name = request.POST.get("first_name")
@@ -30,9 +29,13 @@ def SignUpEmpView(request):
         contanct_number = request.POST.get("contanct_number")
 
         feild = request.POST.get("feild")
-
+        if 'SoftwareEngineering'in feild:
+            feild="software engineering"
+        elif 'ArchitectureEngineering'in feild:
+            feild="Architecture Engineering"    
+        elif 'Businessfield'in feild:
+            feild="Business Field" 
         skills = request.POST.getlist("skills")
-        pluse = request.POST.getlist("pluse")
 
         my_emp = Employee.objects.create(
             first_name=first_name,
@@ -48,7 +51,6 @@ def SignUpEmpView(request):
             author=request.user.username,
         )
         my_emp.Main_skills.set(skills)
-        my_emp.Pluses.set(pluse)
 
         my_emp.save()
         return redirect("jobs")
@@ -65,6 +67,7 @@ def Alljobsview(request):
         jobs = Job.objects.filter(title__contains=request.POST.get("form-control me-2"))
     if request.method == "GET":
         jobs = Job.objects.all()
+        
 
         x=0
         for job in jobs:
@@ -116,13 +119,11 @@ def RegisterExpView(request,pro_id):
     context = Employee.objects.filter(author=request.user.username).first()   
     if request.method == "POST":
         title = request.POST.get("title")
-        # context = Company.objects.filter(author=request.user.username).first()   
         description = request.POST.get("description")
         start_date = request.POST.get("start_date")
         end_date = request.POST.get("end_date")
 
 
-        feild = request.POST.get("feild")
         type = request.POST.get("type")
         company = request.POST.get("company")
         skills = request.POST.getlist("skills")
@@ -134,13 +135,12 @@ def RegisterExpView(request,pro_id):
             title=title,
             company=company,
             description=description,
-            feild=feild,
             type=type,
-            Employee=context,
+            emp=context,
             start_date=start_date,
             end_date=end_date,
-            Main_skills=skills  
         )
+        my_Exp.Main_skills.set(skills)
 
         my_Exp.save()
         return redirect('profileemp',pro_id=pro_id)

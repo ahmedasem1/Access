@@ -17,14 +17,30 @@
 
   <link rel="stylesheet" href="{% static 'css/singleemp.css' %}">
 </head>
+<style>
 
+  
+  .filterDiv {
+  
+      color: black;
+  
+      display: none;
+    }
+    
+    .show {
+      display: block;
+    }
+  
+  
+  
+  </style>
 <body>
     <section style="background-color: #eee;">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
           <div class="container-fluid">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="brand">
-                  <a class="nav-link active" aria-current="page" href="#">Access</a>
+                  <a class="nav-link active" aria-current="page" href="#"><b>access</b></a>
                 </li>
                 <li class="brand">
                   <a class="nav-link" href="{% url 'home_com' %}">Home</a>
@@ -75,14 +91,14 @@
                       <div class="col-sm-3">
                         <p class="mb-0">Field</p>
                       </div>
-                      <div class="col-sm-9">
-                        <select class="form-select" aria-label="Default select example" name="feild" required>
-                          <option value="Software Engineering"selected>Software Engineering</option>
-                          <option value="Mechanical Engineering">Mechanical Engineering</option>
-                          <option value="Markting">Markting</option>
-                        </select>
-      
-                      </div>
+                      <div class="col-md-4">
+        
+                      <select class="form-select" aria-label="Default select example" name="feild"onchange="filterSelection(value);">
+                        <option value="SoftwareEngineering"class="btn" onclick="filterSelection('SoftwareEngineering')"selected>Software Engineering</option>
+                        <option value="ArchitectureEngineering"class="btn" onclick="filterSelection('MechanicalEngineering')">Architecture  Engineering</option>
+                        <option value="Businessfield"class="btn" onclick="filterSelection('Businessfield')">Business Field</option>
+                      </select>
+                    </div>
                       
                       
                     </div>
@@ -115,11 +131,11 @@
                         <p class="mb-0">skills</p>
                       </div>
                       <div class="col-sm-9">
-                        <select class="form-control" id="skills" name='skills'multiple required>                        
-                        {% for skill in main %}
-                          <option value='{{skill.id}}'>{{ skill.name }}</option>
-                        {% endfor %}
-                        </select>
+                        <select class="form-control" id="skills" name='skills'multiple >
+            {% for skill in main %}
+            <option value='{{skill.id}}' class="filterDiv {{ skill.description }}">{{ skill.name }}</option>
+            {% endfor %}
+        </select>
                       </div>
                     </div>
                   </div>
@@ -129,24 +145,55 @@
               <button type="submit" class="btn btn-primary btn-lg" style="margin-left:770px">Register</button>
                     
                 </form>
-                    {% comment %} <hr> {% endcomment %}
-      
-                    {% comment %} <div class="row">
-                      <div class="col-sm-3">
-                        <p class="mb-0">Openings</p>
-                      </div>
-                      <div class="col-sm-9">
-                        {% for job in jobs%}
-                          <button type="button" class="btn btn-primary">{{job.title}}</button>
-                        
-            
-                      {% endfor %}  
-            
-                      </div> {% endcomment %}
+
                     </div>
                   </div>
 
 
     
 </body>
+<script>
+  filterSelection("all")
+  function filterSelection(c) {
+    var x, i;
+    x = document.getElementsByClassName("filterDiv");
+    if (c == "all") c = "";
+    for (i = 0; i < x.length; i++) {
+      w3RemoveClass(x[i], "show");
+      if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+    }
+  }
+  
+  function w3AddClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+    }
+  }
+  
+  function w3RemoveClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      while (arr1.indexOf(arr2[i]) > -1) {
+        arr1.splice(arr1.indexOf(arr2[i]), 1);     
+      }
+    }
+    element.className = arr1.join(" ");
+  }
+  
+  // Add active class to the current button (highlight it)
+  var btnContainer = document.getElementById("myBtnContainer");
+  var btns = btnContainer.getElementsByClassName("btn");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function(){
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+    });
+  }
+  </script>
 </html> 

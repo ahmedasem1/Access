@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Company,Job
-from Employee.models import Employee,Main_skill,Pluses
+from Employee.models import Employee,Main_skill
 from django.shortcuts import render,HttpResponse,redirect
 
 
@@ -36,6 +36,8 @@ def SignUpComView(request):
             author=request.user.username,
         )
         my_com.save()
+        return redirect("home_com")
+
 
     return render(request, "Company/SignUpCom.html")
 
@@ -96,6 +98,12 @@ def RegisterJobView(request):
         description = request.POST.get("description")
 
         feild = request.POST.get("feild")
+        if 'SoftwareEngineering'in feild:
+            feild="software engineering"
+        elif 'ArchitectureEngineering'in feild:
+            feild="Architecture Engineering"    
+        elif 'Businessfield'in feild:
+            feild="Business Field" 
         type = request.POST.get("type")
 
         my_job= Job.objects.create(

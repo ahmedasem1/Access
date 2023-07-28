@@ -36,7 +36,7 @@
       <div class="container-fluid">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="brand">
-              <a class="nav-link active" aria-current="page" href="#">Access</a>
+              <a class="nav-link active" aria-current="page" href="#"><b>access</b></a>
             </li>
             <li class="brand">
               <a class="nav-link" href="{% url 'jobs' %}">Home</a>
@@ -133,26 +133,31 @@
                     <button type="button" class="btn btn-primary">{{skill.name}}</button>
                   
       
-                {% endfor %}  
+                  {% endfor %}  
       
                 </div>
               </div>
             </div>
           </div>
           
+          
           <div class="row">
           </div>
             
 
-                    <h5>Past Experiance</h5>
+                    <h5>Experience</h5>
 
-            <div class="card mb-6">
+
+            
+            
+
+      
+          {% for exp in experience%}
+          <div class="card mb-6" style="margin-bottom:20px">
 
         <div class="card-body">
-            
-            
 
-          {% for exp in experience%}
+
       {% comment %} <div class="css-1i76nwa"> {% endcomment %}
         <div style="display: flex;">
         <strong>{{ exp.title }}</strong><div class="type"> {{exp.type}}</div></div>
@@ -173,36 +178,50 @@
                 <button type="button" class="btn btn-primary">{{skill.name}}</button>
               
   
-            {% endfor %}  
+          {% endfor %}  
           </div>
         </div>
-        {% endif %}
+              {% endif %}
 
   
             </div>
              <span style="white-space: pre-wrap;">{{ exp.description }}</span><br><br>
              
 
+            </div>
+          </div>
+
+          </div>
+
 
     
 
       
 
-    </div>
    
 
-  </div>
-
-  </div>
 
       {% endfor %}
-         
+</div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+
+
+
+
+    </div>
+
       </div> 
       <div class="col-md-6">
         <a href="{% url 'registerexp' pro_id=employee.id %}">
             <button type="button" class="btn btn-primary btn-lg" style="position:fixed;
             right: 10px;
-            bottom: 10px;">Add Experiance</button> </a>
+            bottom: 10px;">Add Experience</button> </a>
   </div>
              
           </div>

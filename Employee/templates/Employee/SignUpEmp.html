@@ -18,15 +18,31 @@
 
 
 </head>
+<style>
 
-<body>
+
+.filterDiv {
+
+    color: black;
+
+    display: none;
+  }
+  
+  .show {
+    display: block;
+  }
+
+
+
+</style>
+<body style="display: flex; justify-content: space-around;">
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
 
     
-    <form method="POST" enctype="multipart/form-data" class="row g-3">
+    <form method="POST" enctype="multipart/form-data" class="row g-3" style="margin-top:50px;margin-bottom:50px">
         {% csrf_token %}
         <h3>Sign Up Here</h3>
         
@@ -83,35 +99,33 @@
 
     <div class="col-md-4">
         
-        {% comment %} <label for="id_feild"class="form-label">Feild:</label> <input type="text" name="feild" maxlength="200" required id="feild"> {% endcomment %}
         <label for="id_contanct_number"class="form-label">Feild:</label> 
-        <select class="form-select" aria-label="Default select example" name="feild">
-            <option selected> </option>
-            <option value="Software Engineering">Software Engineering</option>
-            <option value="Mechanical Engineering">Mechanical Engineering</option>
-            <option value="Markting">Markting</option>
+        <select class="form-select" aria-label="Default select example" name="feild"onchange="filterSelection(value);">
+            <option value="SoftwareEngineering"class="btn" onclick="filterSelection('SoftwareEngineering')"selected>Software Engineering</option>
+            <option value="ArchitectureEngineering"class="btn" onclick="filterSelection('MechanicalEngineering')">Architecture Engineering</option>
+            <option value="Businessfield"class="btn" onclick="filterSelection('Businessfield')">Business Field</option>
           </select>
     </div>
 
 
     <div class="col-md-6">
         
-        <label for="id_Main_skill">Main skill:</label> <select class="form-control" id="skills" name='skills'multiple>
+        <label for="id_Main_skill">Main skill:</label> <select class="form-control" id="skills" name='skills'multiple >
             {% for skill in main %}
-                <option value='{{skill.id}}'>{{ skill.name }}</option>
+                <option value='{{skill.id}}' class="filterDiv {{ skill.description }}">{{ skill.name }}</option>
             {% endfor %}
         </select>
         
     </div>
 
-    <div class="col-md-6">
+    {% comment %} <div class="col-md-6">
         
         <label for="id_Pluses">Pluses:</label> <select name="pluse" required id="pluse" multiple>
             {% for pluse in plus %}
             <option value='{{pluse.id}}'>{{ pluse.name }}</option>
         {% endfor %}
 
-</select>
+</select> {% endcomment %}
         
     </div>
 
@@ -123,4 +137,48 @@
     {% endif %}  
   
 </body>
+<script>
+    filterSelection("all")
+    function filterSelection(c) {
+      var x, i;
+      x = document.getElementsByClassName("filterDiv");
+      if (c == "all") c = "";
+      for (i = 0; i < x.length; i++) {
+        w3RemoveClass(x[i], "show");
+        if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+      }
+    }
+    
+    function w3AddClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+      }
+    }
+    
+    function w3RemoveClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        while (arr1.indexOf(arr2[i]) > -1) {
+          arr1.splice(arr1.indexOf(arr2[i]), 1);     
+        }
+      }
+      element.className = arr1.join(" ");
+    }
+    
+    // Add active class to the current button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function(){
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
+    </script>
 </html>
